@@ -1,3 +1,6 @@
+export const maxDuration = 60;
+export const runtime = "nodejs";
+
 import { scrapeWebsite } from '@/lib/scraper';
 import { extractMetrics } from '@/lib/metrics';
 import { analyzeWithAI } from '@/lib/gemini';
