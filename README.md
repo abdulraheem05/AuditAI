@@ -1,40 +1,95 @@
-# AuditAI: Professional Website Auditor
+# AuditAI — Professional Website Auditor
 
-**AuditAI** is a high-performance evaluation tool built to transform raw website data into actionable marketing strategy. Designed for the speed and precision required by modern agencies, it bridges the gap between technical SEO metrics and high-level UX recommendations.
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
+![Gemini](https://img.shields.io/badge/Gemini_AI-4285F4?style=for-the-badge&logo=google&logoColor=white)
+![Cheerio](https://img.shields.io/badge/Cheerio-FFC107?style=for-the-badge)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
 
----
 
-## 📊 The Data We Provide
-The tool extracts and visualizes six core **Factual Metrics**, providing a clear baseline for any website audit before the AI layering begins:
-
-* **Content Health:** Total word count filtered for actual page text, stripping away code noise like scripts and styles.
-* **SEO Structure:** A full count of H1, H2, and H3 tags, including a "smart fallback" that identifies common CSS classes used for headings when proper HTML tags are missing.
-* **Conversion Power:** Total CTA (Call to Action) count, tracking buttons, primary links, and elements with ARIA button roles.
-* **Navigation Mapping:** A breakdown of **Internal vs. External** links to analyze site architecture and "link juice" distribution.
-* **Accessibility Score:** Total image count paired with a precise percentage of images missing `alt` text.
-* **Meta Information:** Real-time extraction of Page Titles and Descriptions, including OpenGraph fallbacks for modern social-sharing optimization.
+## Deployed URL
+**[https://auditai-ar.vercel.app/](YOUR_DEPLOYED_URL_HERE)**
 
 ---
 
-## ⚙️ How It Works: The Pipeline
-AuditAI follows a lean, three-stage "Intelligence Pipeline" to ensure data integrity and low latency:
+## What this is
 
-1.  **The Extraction (Native Fetch):** The system initiates a high-speed HTTP request to fetch the raw HTML. Unlike traditional scrapers, this method is optimized for the serverless cloud, ensuring nearly instant data retrieval.
-2.  **The Parsing (Cheerio Engine):** We utilize a virtual DOM parser to scan the HTML. This stage applies our "Accuracy Fix" logic, removing non-visible elements (like SVGs and footers) to ensure word counts and link audits are honest and accurate.
-3.  **The Reasoning (Gemini 3 Flash):** The structured metrics and page content are fed into a grounded AI prompt. The model (Gemini 3 Flash) interprets the facts and generates a prioritized JSON list of recommendations, ensuring every insight is backed by a specific metric.
+**AuditAI** is an AI-powered website auditing tool that analyzes a live website and converts raw technical data into clear, actionable recommendations.
+
+The project was built to help agencies, marketers, developers, and business owners quickly understand how well a website performs from a content, SEO, UX, accessibility, and conversion perspective.
+
+Instead of only giving generic AI advice, AuditAI first extracts factual website metrics such as word count, heading structure, CTA count, internal/external links, image accessibility, and meta information. These structured metrics are then passed into an AI reasoning layer to generate practical recommendations based on real data.
+
+The goal of this project was to build a fast, reliable, and deployable website auditor that works well in a serverless environment while still producing useful business-level insights.
 
 ---
 
-## 🛠 Technical Challenges & Strategic Pivots
-Developing a resilient auditor in a serverless environment (Vercel) provided a masterclass in infrastructure trade-offs.
+## Key Features
 
-### The Puppeteer "Wall"
-Initially, the project utilized a headless browser (Puppeteer) to handle JavaScript hydration. However, we encountered three critical "Hard Fails" in the production environment:
-* **Infrastructure Mismatch:** Shared libraries like `libnss3.so` were missing in the serverless Linux environment.
-* **Binary Bloat:** Chromium packages consistently pushed the deployment over Vercel's 50MB limit.
-* **The 10-Second Limit:** Vercel Hobby plans enforce a strict 10-second execution window. The Puppeteer startup and scroll logic consistently took 15–20 seconds, leading to timeout failures.
+- Analyze any public website URL
+- Extract real website metrics from raw HTML
+- Generate AI-powered website improvement suggestions
+- Evaluate SEO structure using heading counts and meta information
+- Identify CTA and conversion elements
+- Measure internal and external link distribution
+- Check image accessibility using missing `alt` text percentage
+- Provide fast audit results optimized for serverless deployment
+- Return structured recommendations in a clean, readable format
 
-### The Engineering Pivot
-To ensure **100% reliability** and **85% faster response times**, I pivoted the architecture from a headless browser to a **Lightweight Fetch + Cheerio** strategy. 
+---
 
-> **The Result:** We traded "perfect" JavaScript hydration for "perfect" uptime and speed. By focusing on a lean, HTTP-based extraction, the tool now delivers a complete audit in under 3 seconds, making it a significantly more practical tool for high-volume agency use.
+## What the Audit Measures
+
+AuditAI extracts six major categories of factual website data before generating AI recommendations.
+
+### 1. Content Health
+
+The system calculates the total visible word count from the webpage while filtering out unnecessary code noise such as scripts, styles, and hidden technical elements.
+
+This helps determine whether a page has enough meaningful content for users and search engines.
+
+### 2. SEO Structure
+
+AuditAI scans the website’s heading structure, including:
+
+- H1 tags
+- H2 tags
+- H3 tags
+
+It also includes fallback logic to detect common heading-like CSS classes when websites do not use proper semantic HTML tags.
+
+### 3. Conversion Power
+
+The tool counts conversion-focused elements such as:
+
+- Buttons
+- CTA links
+- Primary action elements
+- Elements using ARIA button roles
+
+This helps evaluate whether the website is clearly guiding users toward meaningful actions.
+
+### 4. Navigation Mapping
+
+AuditAI separates links into:
+
+- Internal links
+- External links
+
+This gives a quick understanding of the website’s navigation structure and how the page distributes users across internal pages or outside resources.
+
+### 5. Accessibility Score
+
+The system checks all images on the page and calculates the percentage of images missing `alt` text.
+
+This helps identify basic accessibility and SEO issues related to image content.
+
+### 6. Meta Information
+
+AuditAI extracts important page metadata such as:
+
+- Page title
+- Meta description
+- OpenGraph title
+- OpenGraph description
+
+These values are useful for SEO, search result previews, and social media sharing.
